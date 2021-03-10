@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Queue {
+        constructor() {
+          this.count = 0;
+          this.lowestCount = 0;
+          this.item = {};
+        }
+        enqueue(ele) {
+          this.item[this.count] = ele;
+          this.count++;
+        }
+        dequeue() {
+          if (this.isEmpty()) {
+            return undefined;
+          }
+          const value = this.item[this.lowestCount];
+          delete this.item[this.lowestCount];
+          this.lowestCount++;
+          return value;
+        }
+        isEmpty() {
+          return this.count - this.lowestCount === 0;
+        }
+        size() {
+          return this.count - this.lowestCount;
+        }
+        toString() {
+          let list = [];
+          for (let i in this.item) {
+            list.push(this.item[i]);
+          }
+          return list.join();
+        }
+      }
+      let queue = new Queue();
+      queue.enqueue("a");
+      queue.enqueue("b");
+      console.log(queue.toString());
+      queue.dequeue();
+      console.log(queue.toString());
+    </script>
+  </body>
+</html>
